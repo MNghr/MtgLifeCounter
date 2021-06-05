@@ -1,5 +1,4 @@
 import sys
-import cv2
 
 from PyQt5 import QtGui
 #from PyQt5.QtWidgets import QWidget,QApplication, QMainWindow, QLabel
@@ -15,7 +14,7 @@ class MainWidget(QWidget):
         self.myLife = MyLife()
         self.opponentLife = OpponentsLife()
 
-        self.setGeometry(300, 300, self.width, self.height)
+        self.setGeometry(0, 0, self.width, self.height)
         self.setWindowTitle('ライフカウンタ(仮)')
         vbox = QVBoxLayout()
         vbox.addWidget(self.opponentLife)
@@ -37,17 +36,20 @@ class OpponentsLife(QWidget):
         self.initUI()
     
     def initUI(self):
+        r = QApplication.desktop().screenGeometry()
         self.lbl = QLabel(self)
         self.lbl.setText("あなた")
-        self.lbl.move(60, 40)
+        self.lbl.move(int((240-self.width)/2), int(self.height/6))
 
         self.lifeLabel = QLabel(self)
         self.lifeLabel.setText(str(self.life))
-        self.lifeLabel.move(60, 80)
+        self.lifeLabel.move(int((240-self.width)/2), int(self.height/2))
         font = QtGui.QFont()
-        font.setPointSize(64)
+        font.setPointSize(96)
         self.lifeLabel.setFont(font)
 
+        font.setPointSize(32)
+        self.lbl.setFont(font)
         self.setGeometry(0, 0, self.width, self.height)
         #self.setWindowTitle('QLineEdit')
         #self.show()
@@ -74,15 +76,18 @@ class MyLife(QWidget):
     def initUI(self):
         self.lbl = QLabel(self)
         self.lbl.setText("わたし")
-        self.lbl.move(60, 40)
+        self.lbl.move(int((240-self.width)/2), int(self.height/6))
 
         self.lifeLabel = QLabel(self)
         self.lifeLabel.setText(str(self.life))
-        self.lifeLabel.move(60, 80)
+        self.lifeLabel.move(int((240-self.width)/2), int(self.height/2))
         font = QtGui.QFont()
-        font.setPointSize(64)
+        font.setPointSize(96)
         self.lifeLabel.setFont(font)
 
+        font1 = QtGui.QFont()
+        font1.setPointSize(32)
+        self.lbl.setFont(font1)
         self.setGeometry(0, 0, self.width, self.height)
         #self.setWindowTitle('QLineEdit')
         #self.show()
